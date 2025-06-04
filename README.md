@@ -1,4 +1,4 @@
-# MegaETH Bot 🚀
+# MegaETH Bot 🌙
 
 A powerful and flexible Ethereum Layer 2 automation tool with multiple features for MegaETH testnet activities.
 
