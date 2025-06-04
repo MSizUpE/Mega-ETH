@@ -1,0 +1,156 @@
+# --------------------------- #
+# SETTINGS SECTION
+# --------------------------- #
+SETTINGS:
+    # number of concurrent threads
+    THREADS: 1
+
+    # number of retries for ANY action
+    ATTEMPTS: 5
+    
+    # account range.
+    # BY DEFAULT: [0, 0] - all accounts
+    # [3, 5] - only 3 4 5 accounts
+    # [7, 7] - only 7 account
+    ACCOUNTS_RANGE: [0, 0]
+    
+    # WORKS ONLY IF ACCOUNTS_RANGE IS [0, 0]
+    # exact accounts to use.
+    # BY DEFAULT: [] - all accounts
+    # Example: [1, 4, 6] - bot will use only 1, 4 and 6 accounts
+    EXACT_ACCOUNTS_TO_USE: []
+    
+    SHUFFLE_WALLETS: true
+
+    # pause between attempts
+    PAUSE_BETWEEN_ATTEMPTS: [3, 10]
+    
+    # pause between swaps
+    PAUSE_BETWEEN_SWAPS: [3, 10]
+    
+    # pause in seconds between accounts
+    RANDOM_PAUSE_BETWEEN_ACCOUNTS: [3, 10]
+    
+    # pause in seconds between actions
+    RANDOM_PAUSE_BETWEEN_ACTIONS: [3, 10]
+    
+    # random pause before start of every account
+    # to make sure that all accounts will be started at different times
+    RANDOM_INITIALIZATION_PAUSE: [3, 40]
+    
+    # if true, bot will send logs to telegram
+    SEND_TELEGRAM_LOGS: false
+    # telegram bot token
+    TELEGRAM_BOT_TOKEN: "12317283:lskjalsdfasdfasd-sdfadfasd"
+    # telegram users ids
+    TELEGRAM_USERS_IDS: [235123432]
+
+    # wait for transaction confirmation in seconds
+    WAIT_FOR_TRANSACTION_CONFIRMATION_IN_SECONDS: 120
+
+FLOW:
+    # if task from database failed, bot will skip it
+    # if false, bot will stop and show error
+    SKIP_FAILED_TASKS: false
+
+
+FAUCET:
+    # CHEAPEST CAPTCHA SOLVER - https://t.me/solvium_crypto_bot
+    SOLVIUM_API_KEY: NF15771gqaiNHnlkhP1C3CRtQTdtHIng
+
+    USE_CAPSOLVER: false
+    CAPSOLVER_API_KEY: CAP-xxxxxxxxxxxxxxxx
+
+RPCS:
+    MEGAETH: ["https://carrot.megaeth.com/rpc"]
+
+
+OTHERS:
+    SKIP_SSL_VERIFICATION: true
+    USE_PROXY_FOR_RPC: true
+    ENABLE_BROWSER_DASHBOARD: true
+
+SWAPS:
+    BEBOP:
+        BALANCE_PERCENTAGE_TO_SWAP: [5, 10]
+        SWAP_ALL_TO_ETH: false
+
+    GTE:
+        BALANCE_PERCENTAGE_TO_SWAP: [5, 10]
+        SWAP_ALL_TO_ETH: true
+        SWAPS_AMOUNT: [3, 5]
+
+STAKINGS:
+    TEKO_FINANCE:
+        # chance for minting tokens
+        CHANCE_FOR_MINT_TOKENS: 50
+        # stakes tokens, not ETH
+        BALANCE_PERCENTAGE_TO_STAKE: [5, 10]
+
+        UNSTAKE: false
+
+DEPLOY:
+    ZKCODEX:
+        DEPLOY_TOKEN: true
+        DEPLOY_NFT: true
+        DEPLOY_CONTRACT: true
+
+        # if true, the bot will perform only one action per launch randomly
+        # if false, the bot will perform all actions in random order
+        ONE_ACTION_PER_LAUNCH: false
+
+
+MINTS:
+    XL_MEME:
+        # balance percentage of ETH to buy meme token
+        BALANCE_PERCENTAGE_TO_BUY: [2, 5]
+        # contracts of meme tokens to buy
+        CONTRACTS_TO_BUY: []
+
+    RARIBLE:
+        # contracts of meme tokens to buy
+        CONTRACTS_TO_BUY: [
+          "0xf9c45ec2b4faab4d89f324fa445b968daa891436",
+          "0x61c584ad78a705e1b0f4094bb2c87ddb4546614c",
+          "0xbbb77ccbf8866559a2e40ba8a0d878d2603788dd",
+          "0xb8027dca96746f073896c45f65b720f9bd2afee7"
+          ]
+
+    OMNIHUB:
+        # max price of NFT to mint
+        MAX_PRICE_TO_MINT: 0.00011
+
+    RAINMAKR:
+        # amount of ETH to buy meme token.
+        # MINIMUM IS 0.00013
+        AMOUNT_OF_ETH_TO_BUY: [0.00013, 0.00015]
+        # contracts of meme tokens to buy. if empty, bot will buy random token
+        CONTRACTS_TO_BUY: []
+
+
+CRUSTY_SWAP:
+    NETWORKS_TO_REFUEL_FROM: ["Arbitrum", "Optimism", "Base"]
+    AMOUNT_TO_REFUEL: [0.0003, 0.0004]
+    MINIMUM_BALANCE_TO_REFUEL: 99999
+    WAIT_FOR_FUNDS_TO_ARRIVE: true
+    MAX_WAIT_TIME: 999999
+    BRIDGE_ALL: false
+    BRIDGE_ALL_MAX_AMOUNT: 0.01
+
+# --------------------------- #
+# EXCHANGES SECTION
+# --------------------------- #
+EXCHANGES:
+    name: "OKX"  # Supported: "OKX", "BITGET"
+    apiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    secretKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    passphrase: 'xxxxxxx'  
+    withdrawals:
+        - currency: "ETH" # ONLY ETH
+          networks: ["Arbitrum", "Optimism"] # ["Arbitrum", "Base", "Optimism"]
+          min_amount: 0.0003
+          max_amount: 0.0004
+          max_balance: 0.005
+          wait_for_funds: true
+          max_wait_time: 99999  # in seconds
+          retries: 3
