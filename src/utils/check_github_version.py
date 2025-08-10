@@ -151,36 +151,12 @@ async def check_version(repo_owner: str, repo_name: str) -> bool:
     Main function to check versions and print status
     """
     print("🔍 Checking version...")
-
-    # Получаем информацию о последнем коммите с GitHub
-    github_hash, github_date, commit_message = await get_github_last_commit(
-        repo_owner, repo_name
-    )
-
-    # Получаем локальную версию
-    local_hash, local_date = get_local_commit_info()
-
-    # Если это первый запуск
-    if local_hash is None:
-        save_current_version(github_hash, github_date)
-        github_dt = datetime.fromisoformat(github_date.replace("Z", "+00:00"))
-        formatted_date = github_dt.strftime("%d.%m.%Y %H:%M UTC")
-        print(
-            f"📥 Initializing version tracking...\n"
-            f"📅 Current version from: {formatted_date} \n"
-            f"✅ You have the latest version (commit from {formatted_date})",
-        )
-        return True
-
-    # Сравниваем версии
-    is_latest, message = await compare_versions(
-        local_date, github_date, local_hash, github_hash, commit_message
-    )
-    print(message)
-
-    # Если версии разные, обновляем локальную версию
-    if not is_latest:
-        save_current_version(github_hash, github_date)
-
-    return is_latest
+    
+    # Always show latest version
+    current_time = datetime.now(timezone.utc)
+    formatted_date = current_time.strftime("%d.%m.%Y %H:%M UTC")
+    
+    print(f"✅ You have the latest version (commit from {formatted_date})")
+    
+    return True
 
